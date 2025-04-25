@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Smartwatch - Detailed View</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Changed background-color to background for gradient */
+            background: linear-gradient(to bottom, #eef2f7, #f9f9f9); /* Subtle gradient background */
+            color: #333;
+            line-height: 1.7;
+            min-height: 100vh; /* Ensure gradient covers full height */
+        }
+
+        .product-detail-container {
+            /* Adjusted max-width and margin for better centering with full-width header */
+            max-width: 1200px;
+            margin: 40px auto; /* Center container with margin */
+            padding: 60px 40px; /* Increased padding slightly */
+            background-color: #fff;
+            border-radius: 15px; /* Slightly more rounded corners */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Enhanced Header Styles --- */
+        .header {
+            width: 100%;
+            background-color: #0c306b; /* Darker, more techy blue */
+            color: #fff;
+            padding: 30px 0; /* Increased padding */
+            text-align: center;
+            border-bottom: 5px solid #082040; /* Even darker border */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /* Stronger shadow */
+            animation: fadeIn 1s ease, slideIn 0.5s ease-in-out;
+            position: relative; /* For gradient overlay */
+            overflow: hidden;  /* to contain the gradient */
+            margin-bottom: 0; /* Remove default margins */
+        }
+
+        .header h1 {
+            font-size: 3.5rem; /* Larger title */
+            margin: 0 0 15px 0; /* Adjusted margin */
+            letter-spacing: 2.5px; /* Add letter spacing for a modern look */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add text shadow */
+            font-weight: 700; /* Bold */
+        }
+
+        .header p {
+            font-size: 1.3rem; /* Slightly larger subtitle */
+            font-weight: 500; /* Medium font weight */
+            margin: 0; /* Remove default margins */
+            opacity: 0.9; /* Slightly less prominent */
+        }
+
+        /* Add a gradient overlay to the header */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(12, 48, 107, 0.9), rgba(30, 80, 144, 0.7)); /* Angled Gradient from dark to slightly lighter blue */
+            opacity: 0.85; /* Control transparency */
+            z-index: 0;
+        }
+
+        /* Style for the header content to be above the gradient */
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+        /* --- End Enhanced Header Styles --- */
+
+
+        .product-video { /* Added a class for the video */
+            width: 100%;
+            max-height: 550px; /* Adjusted max height */
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            object-fit: cover; /* Changed from contain to cover for better fit */
+            animation: fadeIn 1s ease, slideIn 0.5s ease-in-out;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 400px; /* Limit image width */
+            max-height: 400px; /* Limit image height */
+            object-fit: contain;
+            margin-top: 20px; /* Add space above image */
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease, slideIn 0.5s ease-in-out 0.1s; /* Slightly delay image animation */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-40px); opacity: 0; } /* Start slightly higher and faded */
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+
+        .product-title { /* This class seems unused in HTML, kept for potential future use */
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 20px;
+            animation: fadeIn 1s ease, scaleIn 0.5s ease-in-out;
+        }
+       @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; } /* Start slightly smaller and faded */
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .product-description {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.9;
+            text-align: justify;
+            max-width: 800px; /* Limit width for readability */
+            animation: fadeIn 1s ease 0.2s, slideIn 0.5s ease-in-out 0.2s; /* Delay animation */
+            animation-fill-mode: backwards; /* Apply start state immediately */
+        }
+
+        .product-features {
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 800px; /* Align width with description */
+        }
+
+        .product-features h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 15px;
+            text-align: center; /* Center features title */
+            animation: fadeIn 1s ease 0.4s, slideIn 0.5s ease-in-out 0.4s;
+            animation-fill-mode: backwards;
+        }
+
+        .feature-list {
+            list-style-type: none; /* Remove default bullets */
+            padding-left: 0; /* Remove default padding */
+            font-size: 1.15rem; /* Adjusted size */
+            color: #555;
+            display: grid; /* Use grid for better layout */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 20px; /* Spacing between items */
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 35px; /* Space for custom icon */
+            position: relative; /* For icon positioning */
+            animation: fadeIn 1s ease 0.6s, slideIn 0.5s ease-in-out 0.6s;
+            animation-fill-mode: backwards;
+        }
+
+        /* Add a checkmark icon before each feature */
+        .feature-list li::before {
+            content: '✔'; /* Checkmark character */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ff6b6b; /* Use accent color */
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .buy-section {
+            text-align: center;
+            margin-top: 50px;
+            animation: fadeIn 1s ease 1s, pulse 1.5s infinite alternate; /* Delay fadeIn, adjust pulse */
+            animation-fill-mode: backwards;
+        }
+        @keyframes pulse {
+            from { transform: scale(1); box-shadow: 0 6px 12px rgba(255, 107, 107, 0.2); }
+            to { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4); }
+        }
+
+        .buy-button {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 18px 40px; /* Slightly larger padding */
+            border: none;
+            border-radius: 50px; /* Pill shape */
+            cursor: pointer;
+            font-size: 1.4rem; /* Larger text */
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            letter-spacing: 1px; /* Add spacing */
+        }
+
+        .buy-button:hover {
+            background-color: #ff4757;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            transform: translateY(-3px) scale(1.02); /* Lift and slightly enlarge */
+        }
+         .buy-button:active {
+             transform: translateY(-1px) scale(1); /* Press down effect */
+         }
+
+        .additional-info {
+            margin-top: 60px;
+            border-top: 1px solid #ecf0f1;
+            padding-top: 40px;
+            width: 100%;
+            max-width: 800px; /* Align width */
+            animation: fadeIn 1s ease 0.8s, slideIn 0.5s ease-in-out 0.8s;
+            animation-fill-mode: backwards;
+        }
+
+        .additional-info h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center; /* Center title */
+        }
+
+        .additional-info p {
+            font-size: 1.15rem; /* Adjusted size */
+            color: #555;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Aura Smartwatch</h1>
+        <p>The Future is On Your Wrist.</p> </header>
+
+    <div class="product-detail-container">
+        <video class="hero-video" autoplay muted loop height="600px">
+            <source src="2070043-hd_1920_1080_25fps.mp4" type="video/mp4">
+        </video>
+
+        <img src="unnamed (1).png" alt="Aura Smartwatch" class="product-image">
+
+        <p class="product-description">
+            The Aura Smartwatch isn't just a watch; it's a powerful extension of your digital life, seamlessly blending the elegance of a traditional timepiece with the brains of a smartphone. Designed for the modern individual who demands both style and substance, Aura keeps you connected, informed, and in control, all from your wrist. Experience the perfect synergy of form and function.
+        </p>
+
+        <div class="product-features">
+            <h2>Key Features</h2>
+            <ul class="feature-list">
+                <li><strong>Crystal-Clear Display:</strong> A vibrant, high-resolution touchscreen for easy navigation and viewing under any light.</li>
+                <li><strong>On-the-Go Connectivity:</strong> Make/receive calls, handle messages, and get social media notifications instantly.</li>
+                <li><strong>Seamless Music Experience:</strong> Store and play your favorite tracks or stream playlists directly from the watch.</li>
+                <li><strong>Intuitive Voice Assistant:</strong> Control your watch, get info, set reminders, and more, completely hands-free.</li>
+                <li><strong>Advanced Health Tracking:</strong> Monitor heart rate, sleep patterns, activity levels, and other key wellness metrics.</li>
+                <li><strong>Customizable Design:</strong> Personalize your look with a vast library of watch faces and easily swappable bands.</li>
+                <li><strong>Long-lasting Battery:</strong> Power through your days with optimized battery life on a single charge.</li>
+                <li><strong>Robust Water Resistance:</strong> Built to withstand splashes, sweat, and dives, ready for any adventure.</li>
+                <li><strong>Effortless Contactless Payments:</strong> Make secure payments on the go, directly from your wrist.</li>
+            </ul>
+        </div>
+
+        <div class="buy-section">
+            <button class="buy-button">Order Your Aura Now</button> </div>
+
+        <div class="additional-info">
+            <h2>Compatibility & Updates</h2> <p>
+                The Aura Smartwatch is compatible with both iOS (version X.X and up) and Android (version Y.Y and up) smartphones. Download the dedicated Aura companion app from your app store to unlock detailed insights, customize settings, and manage notifications. We are committed to enhancing your experience with regular software updates, bringing new features and performance improvements directly to your watch.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
